@@ -2,11 +2,21 @@ package com.bank.entity;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+
+@Entity
 public class Customer {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "ID_GENERATOR")
+	@SequenceGenerator(name = "ID_GENERATOR", allocationSize = 1, initialValue = 100000)
 	private Long id;
 	private Long panCardNumber;
-	private Long aadharNumber;
+	private Long nationalInsuranceNumber;
 	private String firstName;
 	private String lastName;
 	private String postalAddress;
@@ -17,11 +27,11 @@ public class Customer {
 		super();
 	}
 	
-	public Customer(Long panCardNumber, Long aadharNumber, String firstName, String lastName, String postalAddress,
+	public Customer(Long panCardNumber, Long nationalInsuranceNumber, String firstName, String lastName, String postalAddress,
 			String emailAddress, LocalDate dateOfBirth) {
 		super();
 		this.panCardNumber = panCardNumber;
-		this.aadharNumber = aadharNumber;
+		this.nationalInsuranceNumber = nationalInsuranceNumber;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.postalAddress = postalAddress;
@@ -45,12 +55,12 @@ public class Customer {
 		this.panCardNumber = panCardNumber;
 	}
 	
-	public Long getAadharNumber() {
-		return aadharNumber;
+	public Long getNationalInsuranceNumber() {
+		return nationalInsuranceNumber;
 	}
 	
-	public void setAadharNumber(Long aadharNumber) {
-		this.aadharNumber = aadharNumber;
+	public void setAadharNumber(Long nationalInsuranceNumber) {
+		this.nationalInsuranceNumber = nationalInsuranceNumber;
 	}
 	
 	public String getFirstName() {
@@ -95,7 +105,7 @@ public class Customer {
 	
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", panCardNumber=" + panCardNumber + ", aadharNumber=" + aadharNumber
+		return "Customer [id=" + id + ", panCardNumber=" + panCardNumber + ", aadharNumber=" + nationalInsuranceNumber
 				+ ", firstName=" + firstName + ", lastName=" + lastName + ", postalAddress=" + postalAddress
 				+ ", emailAddress=" + emailAddress + ", dateOfBirth=" + dateOfBirth + "]";
 	}

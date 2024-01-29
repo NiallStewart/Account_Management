@@ -1,14 +1,17 @@
 package com.bank.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 @Entity
 public class Account {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "ACCOUNT_NUMBER_GENERATOR")
+	@SequenceGenerator(name = "ACCOUNT_NUMBER_GENERATOR", allocationSize = 1, initialValue = 1000000000)
 	private Long accountNumber;
 	private Long customerId;
 	private int currentBalance;

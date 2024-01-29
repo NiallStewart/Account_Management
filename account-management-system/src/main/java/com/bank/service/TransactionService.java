@@ -74,5 +74,19 @@ public class TransactionService {
 			return "Invalid Account Number!";
 		}
 	}
+	
+	public String tranferTransaction(Long sender, Long reciever, int amount, String type, String subtype) {
+		Account senderAccount = accountRepo.findById(sender).get();
+		Account recieverAccount = accountRepo.findById(reciever).get();
+		
+		if(!senderAccount.equals(null) && !recieverAccount.equals(null)) {
+			withdrawTransaction(sender, amount, type, subtype);
+			depositTransaction(reciever, amount, type, subtype);
+			
+			return "Transfer Transaction Successful!";
+		} else {
+			return "Invalid Account Number(s)";
+		}
+	}
 
 }
