@@ -11,6 +11,7 @@ public class Transaction {
 	@Id
 	@GeneratedValue
 	private Long id;
+	private static Long nextReferenceNo = 101L;
 	private Long referenceNo;
 	private LocalDateTime dateTime;
 	private String type;
@@ -21,9 +22,10 @@ public class Transaction {
 		super();
 	}
 	
-	public Transaction(Long referenceNo, LocalDateTime dateTime, String type, String subType, int currentBalance) {
+	public Transaction(LocalDateTime dateTime, String type, String subType, int currentBalance) {
 		super();
-		this.referenceNo = referenceNo;
+		this.referenceNo = this.nextReferenceNo;
+		this.nextReferenceNo++;
 		this.dateTime = dateTime;
 		this.type = type;
 		this.subType = subType;
@@ -40,10 +42,6 @@ public class Transaction {
 	
 	public Long getReferenceNo() {
 		return referenceNo;
-	}
-	
-	public void setReferenceNo(Long referenceNo) {
-		this.referenceNo = referenceNo;
 	}
 	
 	public LocalDateTime getDateTime() {
